@@ -1,0 +1,30 @@
+- name: checking data types
+  hosts: localhost
+  vars:
+    Name: Santhoshkumar #key value
+    Skills: #Skills is a list type
+      - Devops
+      - Shell
+      - Ansible
+      - Linux
+    Experience: # Experience is map type
+        Devops: 3
+        Aws: 2
+        Docker: 1
+    Trainer: false # boolean
+  tasks:
+    - name: print key value pair
+      ansible.builtin.debug:
+        msg: "name: {{NAME}}""
+
+    - name: print list
+      ansible.builtin.debug:
+        msg: "Skills: {{Skills}}"
+
+    - name: print map
+      ansible.builtin.debug:
+        msg: "Experience: {{Experience}}"
+
+    - name: print boolean
+      ansible.builtin.debug:
+        msg: "is he Trainer: {{Trainer}}"

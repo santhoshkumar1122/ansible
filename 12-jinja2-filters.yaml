@@ -1,0 +1,18 @@
+---
+- name: Jinja2 filtering demo1
+  hosts: localhost
+  tasks:
+    - name: copy sample data to /tmp
+      ansible.builtin.copy:
+        src: 12-multiple-document-strings.yaml
+        dest: /tmp/multple-document-strings.yaml
+
+
+    - name: Reading the sample data to a variable
+      ansible.builtin.shell: cat/tmp/multiple-document-strings.yaml
+      register: result
+
+    - name: Print the filtered output in the debug message
+      ansible.builtin.debug:
+        msg: '{{ item }}'
+      loop: '{{ result.stdout | from_yaml_all | list }}'

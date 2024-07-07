@@ -17,7 +17,7 @@
   become: true
   tasks:
     - name: Installing the tomcat server
-      ansible.builtin.dbf:
+      ansible.builtin.dnf:
           name: tomcat9
           state: latest
     - name: Starting the tomcat server

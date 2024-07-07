@@ -16,11 +16,21 @@
   hosts: localhost
   become: true
   tasks:
-    - name: Installing the tomcat server
+    - name: Installing the java
       ansible.builtin.dnf:
-          name: tomcat
-          state: latest
-    - name: Starting the tomcat server
+        name: java-1.8.0-openjdk
+        state: present
+    - name: Download Tomcat
+      get_url:
+        url: "https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.54/bin/apache-tomcat-9.0.54.tar.gz"
+        dest: /opt/
+    - name: Extract Tomcat
+      unarchive:
+        src: /opt/apache-tomcat-9.0.54.tar.gz
+        dest: /opt/
+        remote_src: yes
+    - name: Start tomcat service
       ansible.builtin.service:
-          name: tomcat9
-          state: started
+        name: tomcat
+        state: started
+        enabled: yes

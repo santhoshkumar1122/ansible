@@ -5,11 +5,11 @@
   tasks: 
     - name: Installing the httpd package
       ansible.builtin.dnf:
-        - name: httpd
+          name: httpd
           state: latest
     - name: starting the httpd
       ansible.builtin.service:
-        - name: httpd
+          name: httpd
           state: started
 
 - name: Play 2 - Install the tomcat server
@@ -18,9 +18,9 @@
   tasks:
     - name: Installing the tomcat server
       ansible.builtin.dbf:
-        - name: tomcat9
+          name: tomcat9
           state: latest
     - name: Starting the tomcat server
       ansible.builtin.service:
-        - name: tomcat9
+          name: tomcat9
           state: started

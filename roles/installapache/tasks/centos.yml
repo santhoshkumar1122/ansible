@@ -1,0 +1,10 @@
+---
+- name: Inatall Apache using dnf
+  ansible.builtin.dnf:
+     name: httpd
+     state: latest
+- name: Start the Apache service
+  ansible.builtin.service:
+     name: httpd
+     state: started
+     

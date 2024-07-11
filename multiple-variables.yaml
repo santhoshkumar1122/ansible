@@ -19,7 +19,7 @@
     # task to alert if 'user_role' is defined
    - name: Alert if a variable is not defined
      debug:
-      msg: "The variable 'user_role" is not defined
+      msg: "The variable 'user_role' is not defined
      when: user_role is not defined
     # task to print multiple variables together
    - name: Print multiple variables

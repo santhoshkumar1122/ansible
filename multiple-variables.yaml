@@ -10,7 +10,7 @@
   tasks:
    - name: Print specfic fact
      ansible.builtin.debug:
-       msg: "The systems memory capacity is {{ ansible_memtotal_mb }}\MB"
+       msg: "The systems memory capacity is {{ ansible_memtotal_mb }}"
     # task to print tha value of user role if it is defined
    - name: print variable if it exists
     debug:

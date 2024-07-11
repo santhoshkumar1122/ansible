@@ -1,0 +1,32 @@
+---
+- name: Printing multiple variables
+  hosts: localhost
+  gather_facts: yes
+  vars:
+    # Define some variables
+    username: "santhosh"
+    home_directory: "/home/santhosh"
+    user_shell: "/bin/bash"
+  tasks:
+   - name: Print specfic fact
+     ansible.builtin.debug:
+       msg: "The systems memory capacity is {{ ansible_memtotal_mb }}\MB"
+    # task to print tha value of user role if it is defined
+    - name: print variable if it exists
+      debug:
+        msg: "The user-defined variable 'user_role' is set to {{ user_role }}"
+      when: user_role is defined
+    # task to alert if 'user_role' is defined
+    - name: Alert if a variable is not defined
+      debug:
+        msg: "The variable 'user_role" is not defined
+      when: user_role is not defined
+    # task to print multiple variables together
+    - name: Print multiple variables
+      debug:
+        msg:
+         Here are some details:
+         - Username: {{ username }}
+         - Home Directory: {{ home_directory }}
+         - Shell: {[ user_shell ]}
+     

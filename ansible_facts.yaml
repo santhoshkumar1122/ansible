@@ -1,0 +1,11 @@
+---
+- name: Installing fail2ban on localhost
+  hosts: localhost
+  gather_facts: true
+
+  tasks:
+    - name: Install fail2ban
+      apt:
+        name: fail2ban
+        state: present
+      when: ansible_bios_date is search('2024')

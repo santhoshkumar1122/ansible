@@ -11,11 +11,13 @@
    - name: Print specfic fact
      ansible.builtin.debug:
        msg: "The systems memory capacity is {{ ansible_memtotal_mb }}"
+     ignore_errors: yes
     # task to print tha value of user role if it is defined
    - name: print variable if it exists
     debug:
       msg: "The user-defined variable 'user_role' is set to {{ user_role }}"
     when: user_role is defined
+    ignore_errors: yes
     # task to alert if 'user_role' is defined
    - name: Alert if a variable is not defined
      debug:

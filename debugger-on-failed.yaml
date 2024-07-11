@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+   - name: install apache
+     ansible.builtin.dnf:
+       name: httpd3
+       state: present
+       update_cache: yes
+     debugger: on_failed
+     

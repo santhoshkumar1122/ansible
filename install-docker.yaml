@@ -1,0 +1,44 @@
+---
+- name: installing docker
+  hosts: localhost
+  become: yes
+  tasks:
+    # Remove any existing docker list file
+    - name: Remove old docker.list file
+      file:
+        path: /etc/dnf/sources.list.d/docker.list
+        # ensure the file does not exist
+        state: absent
+      
+    # Uninstall old docker images
+    - name: Remove old docker images
+      dnf: 
+       # loop over each package and
+       # ensure they are uninstalled
+        name: "{{ item }}"
+        state: absent
+      # list of old docker-related packages
+      # to remove
+      with_items:
+        - docker.io
+        - docker-doc
+        - docker-compose
+        - docker-compose-v2
+        - podman-docker
+        - containerd
+        - runc
+  # Task3: Install dependencies required
+  # for Docker installation
+    - name: Install dependencies
+      dnf:
+        name: "{{ item }}"
+        # Ensure these packages are installed
+        state: present"
+        # update the package cache
+        update_cache: yes
+      with_items:
+        - curl
+        - gnupg
+        - lsb-release
+        - ca-certificates
+    

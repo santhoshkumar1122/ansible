@@ -24,7 +24,7 @@
     # task to print multiple variables together
    - name: Print multiple variables
      debug:
-      msg:
+      msg: |
         Here are some details:
         - Username: {{ username }}
         - Home Directory: {{ home_directory }}

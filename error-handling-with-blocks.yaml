@@ -1,0 +1,17 @@
+---
+- name: Error Handling
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: A block that will fail
+      block:
+        - name: Good task
+          command: /bin/true
+        - name: Bad task
+          command: /bin/false
+        - name: Another bad task
+          command: /bin/false
+      rescue:
+        - name: handle errors
+          debug:
+            msg: "There was an Error"

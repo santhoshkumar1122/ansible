@@ -1,0 +1,11 @@
+---
+- name: enabling the checkmode option
+  become: yes
+  hosts: localhost
+  check_mode: yes
+  tasks: 
+    - name: Install httpd package
+      ansible.builtin.dnf:
+         name: httpd3
+         state: present
+         update_cache: yes

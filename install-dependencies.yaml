@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: Installing the required dpendencies
-      ansible.builtin.dnf:
+      ansible.builtin.yum:
          name: "{{ item }}"
          state: present
          update_cache: yes
@@ -13,4 +13,3 @@
          - gnupg
          - lsb-release
          - ca-certificates
-         

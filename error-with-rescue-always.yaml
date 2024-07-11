@@ -6,7 +6,7 @@
     - name: Installing and starting services with error handling
       block:
         - name: install httpd package
-          ansible.builtin.dnf:
+          ansible.builtin.yum:
              name: httpd
              status: present
         - name: Start the service

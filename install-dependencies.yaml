@@ -1,0 +1,16 @@
+---
+- name: Install dependencies
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Installing the required dpendencies
+      ansible.builtin.dnf:
+         name: "{{ item }}"
+         state: present
+         update_cache: yes
+      with_items:
+         - curl
+         - gnupg
+         - lsb-release
+         - ca-certificates
+         

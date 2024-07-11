@@ -1,0 +1,14 @@
+---
+- hosts: web
+  become: yes
+  tasks:
+  - name: Create a login user
+    user:
+      name: user1
+      state: present
+      # Linux/Unix/POSIX: Enter the hashed password as the value.
+      password: "{{ 'b1;e6*45f98_2896a$4z04%65aee25^581' | password_has\
+h('sha512') }}"
+      # Add the user to the sudo group.
+      groups:
+      - sudo   

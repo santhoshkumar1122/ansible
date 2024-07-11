@@ -1,0 +1,31 @@
+---
+- name: Error handling with rescue and always
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Installing and starting services with error handling
+      block:
+        - name: install httpd package
+          ansible.builtin.dnf:
+             name: httpd
+             status: present
+        - name: Start the service
+          ansible.builtin.service:
+             name: httpd
+             status: started
+      rescue:
+        - name: Error handling - Apache installation failed
+          ansible.builtin.debug: 
+             msg: >
+              "failed to install or start apache
+              check system logs or package
+              management configaration"
+        - name: Additionl error handling steps
+          ansible.builtin.shell: >
+             echo "Error handling with apache installation"
+             >> /var/log/ansible_error.log
+      always:
+        - name: Always executed task
+          ansible.builtin.debug:
+             msg: >
+               "this task runs always irrespective of success or failure"

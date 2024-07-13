@@ -10,7 +10,7 @@
           - { key: 'age', value: 30 }
           - { key: 'city', value: 'hyderabad'}
       ansible.builtin.set_fact:
-        my_dictionary = "{{ list_of_items | items2dict }}"
+        my_dictionary: "{{ list_of_items | items2dict }}"
     - name: Display the dictionary
       ansible.builtin.debug:
          msg: " the dictionary is: {{ my_dictionary }}"

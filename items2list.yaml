@@ -10,7 +10,7 @@
            age: 30
            place: hyderabad
       ansible.builtin.set_fact:
-        list_to_items: "{{ mydict | items2list }}"
+        list_to_items: "{{ mydict | dict2items }}"
     - name: dispaly the list
       ansible.builtin.debug:
         msg: "the list is: {{ list_to_items }}"

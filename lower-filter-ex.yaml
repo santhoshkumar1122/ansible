@@ -1,0 +1,22 @@
+---
+- name: Set and display an environment variable
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: set the environment variable
+      ansible.builtin.setfact:
+         myvar: "HELLO WORLD"
+    - name: Debug the output
+      ansible.builtin.debug:
+         msg: "the output is: {{ myvar }}"
+
+# another play
+- name: Example playbook to demonstrate lower filter
+  hosts: localhost
+  gather_facts: no
+  vars: 
+    some_variable: "{{ myvar | lower}}"
+  tasks:
+   - name: Display the vaule of the variable
+     ansible.builtin.debug:
+       msg: " the vaule of 'some_varibale' is: {{ some_variable }}"

@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: set the environment variable
-      ansible.builtin.setfact:
+      ansible.builtin.set_fact:
          myvar: "HELLO WORLD"
     - name: Debug the output
       ansible.builtin.debug:

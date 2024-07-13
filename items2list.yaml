@@ -1,0 +1,16 @@
+---
+- name: converting the dictionary to the list
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: convert dict to list of items
+      vars:
+        mydict: 
+           name: santhosh
+           age: 30
+           place: hyderabad
+      ansible.builtin.set_fact:
+        list_to_items: "{{ mydict | items2list }}"
+    - name: dispaly the list
+      ansible.builtin.debug:
+        msg: "the list is: {{ list_to_items }}"

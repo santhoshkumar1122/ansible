@@ -13,5 +13,5 @@
         list_to_items: "{{ mydict | dict2items }}"
     - name: dispaly the list
       ansible.builtin.debug:
-        msg: >
+        msg: 
          "the list is: {{ list_to_items }}"

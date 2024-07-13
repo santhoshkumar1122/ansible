@@ -1,0 +1,30 @@
+---
+- name: Playbook example of open AI
+  hosts: localhost
+  become: yes 
+  vars:
+    prompt: >
+       We are viewing an output from the host
+       {{ inventory_hostname }}
+       The following is the content to analyse"
+  tasks:
+   - name: Install sysstat
+     ansible.builtin.dnf:
+        name: sysstat
+        state: latest
+   - name: pip install openai
+     ansible.builtin.pip:
+        name: openai
+        state: latest
+   - name: Context of the conversation
+     shell: tail -n 10 /var/log/syslog
+     register: context
+   - name: Analyze vmstats numbers with Open AI GPT
+     genai:
+        openai_api_key: "{{ openai_api_key }}"
+        prompt: "{{ prompt }}"
+        context: "{{ context.stdout_lines}}"
+     register: ai_response
+   - name: printing the ai response
+     ansible.builtin.debug:
+        var: ai_response.response

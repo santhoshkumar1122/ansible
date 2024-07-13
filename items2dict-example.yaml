@@ -1,0 +1,16 @@
+---
+- name: playbook to demostrate items2dict
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Convert list of items to dictionary
+      vars:
+        list_of_items:
+          - { key: 'name', value: 'santhosh kumar' }
+          - { key: 'age', value: 30 }
+          - { key: 'city', value: 'hyderabad'}
+      ansible.builtin.set_fact:
+        my_dictionary = "{{ list_of_items | items2dict }}"
+    - name: Display the dictionary
+      ansible.builtin.debug:
+         msg: " the dictionary is: {{ my_dictionary }}"
